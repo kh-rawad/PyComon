@@ -18,9 +18,6 @@ class clsCommander(object):
         if not self._instance:
             print('Creating new instance')
             self._instance = super(clsCommander,self).__new__(self)
-            # Put any initialization here.
-            # self.Logger()
-            # self.DBConnect = self.DBConnect
         return self._instance
 
     def fnLogger(self, logLevel = "INFO", log_file = "run_log.txt", name=None):
@@ -83,4 +80,3 @@ class clsCommander(object):
         self.logger.info("[CSV] file written [%s] with [%d] Rows" % (filename, len(lines)))
 ###############################################################################################
 objCMD = clsCommander()
-# objLogger = objCMD.fnLogger()
