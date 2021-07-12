@@ -9,8 +9,15 @@
 import os,sys
 import logging
 import csv,json
-import pypyodbc
 
+try:
+    import pypyodbc
+except ImportError:
+    from pip._internal import main as pipmain
+except ImportError:
+    from pip import main as pipmain
+finally:
+    pipmain(['install', 'pypyodbc'])
 
 class clsCommander(object):
     _instance = None
@@ -80,3 +87,6 @@ class clsCommander(object):
         self.logger.info("[CSV] file written [%s] with [%d] Rows" % (filename, len(lines)))
 ###############################################################################################
 objCMD = clsCommander()
+fnLogger = clsCommander().fnLogger
+fnDBConnect = clsCommander().fnDBConnect
+fnCSVWrite = clsCommander().fnCSVWrite
