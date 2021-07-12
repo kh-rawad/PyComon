@@ -12,12 +12,13 @@ import csv,json
 
 try:
     import pypyodbc
-except ImportError:
-    from pip._internal import main as pipmain
-except ImportError:
-    from pip import main as pipmain
-finally:
-    pipmain(['install', 'pypyodbc'])
+except ImportError as e:
+    try:
+        from pip._internal import main as pipmain
+    except ImportError as e:
+        from pip import main as pipmain
+    finally:
+        pipmain(['install', 'pypyodbc'])
 
 class clsCommander(object):
     _instance = None
