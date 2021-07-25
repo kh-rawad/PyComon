@@ -14,12 +14,41 @@ try:
     import pypyodbc
 except ImportError as e:
     try:
+        # For Pythonm 3
         from pip._internal import main as pipmain
     except ImportError as e:
+        # For Python 2
         from pip import main as pipmain
     finally:
         pipmain(['install', 'pypyodbc'])
+class bcolors:
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[32m'
+    WARNING = '\033[93m'
+    FAIL = '\033[31m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
+class messages:
+    STR_OKB = bcolors.OKBLUE + "%s" + bcolors.ENDC
+    STR_OKG = bcolors.OKGREEN + "%s" + bcolors.ENDC
+    STR_WARNING = bcolors.WARNING + "%s" + bcolors.ENDC
+    STR_FAIL = bcolors.FAIL + "%s" + bcolors.ENDC
+    STR_BOLD = bcolors.BOLD + "%s" + bcolors.ENDC
+    STR_UNDER = bcolors.UNDERLINE + "%s" + bcolors.ENDC
+def logo():
+    print messages.STR_FAIL % """
+    (       (    (                (   (    (             )  
+    )\ )    )\ ) )\ )   (      (  )\ ))\ ) )\ ) *   ) ( /(  
+    (()/((  (()/((()/(   )\   ( )\(()/(()/((()/` )  /( )\()) 
+    /(_))\  /(_))/(_)((((_)( )((_)/(_)/(_))/(_)( )(_)((_)\  
+    (_))((_)(_)) (_))  )\ _ )((_)_(_))(_)) (_))(_(_()__ ((_) 
+    | _ | __| |  |_ _| (_)_\(_| _ |_ _| |  |_ _|_   _\ \ / / 
+    |   | _|| |__ | |   / _ \ | _ \| || |__ | |  | |  \ V /  
+    |_|_|___|____|___| /_/ \_\|___|___|____|___| |_|   |_|   
+    Reliability tools By RawadKharma@wdc.com
+    """
 class clsCommander(object):
     _instance = None
     def __new__(self):
@@ -37,6 +66,10 @@ class clsCommander(object):
         return: OBJ logging
         '''
         logging.getLogger().setLevel(logging.NOTSET)
+        # logging.NOTE = 9
+        # logging.addLevelName(logging.NOTE, "NOTE")
+        # log.note = lambda msg, *args: log._log(logging.NOTE, msg, args)
+        
         # set debug level for log file
         reLogFileHandler = logging.FileHandler(log_file)
         reLogFileHandler.setLevel(logging.DEBUG) # default debug level in log files DEBUG
