@@ -21,6 +21,7 @@ except ImportError as e:
         from pip import main as pipmain
     finally:
         pipmain(['install', 'pypyodbc'])
+        import pypyodbc
 class bcolors:
     OKBLUE = '\033[94m'
     OKGREEN = '\033[32m'
@@ -38,6 +39,7 @@ class messages:
     STR_BOLD = bcolors.BOLD + "%s" + bcolors.ENDC
     STR_UNDER = bcolors.UNDERLINE + "%s" + bcolors.ENDC
 def logo():
+    # pylint: disable=w1401
     print messages.STR_FAIL % """
     (       (    (                (   (    (             )  
     )\ )    )\ ) )\ )   (      (  )\ ))\ ) )\ ) *   ) ( /(  
@@ -119,6 +121,7 @@ class clsCommander(object):
             for line in lines:
                 writer.writerow(line)
         self.logger.info("[CSV] file written [%s] with [%d] Rows" % (filename, len(lines)))
+
 ###############################################################################################
 objCMD = clsCommander()
 fnLogger = clsCommander().fnLogger
