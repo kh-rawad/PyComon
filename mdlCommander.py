@@ -49,7 +49,7 @@ def logo():
     | _ | __| |  |_ _| (_)_\(_| _ |_ _| |  |_ _|_   _\ \ / / 
     |   | _|| |__ | |   / _ \ | _ \| || |__ | |  | |  \ V /  
     |_|_|___|____|___| /_/ \_\|___|___|____|___| |_|   |_|   
-    Reliability tools By RawadKharma@wdc.com
+    Reliability tools By Rawad.Kharma@wdc.com
     """
 class clsCommander(object):
     _instance = None
@@ -67,11 +67,8 @@ class clsCommander(object):
             can use [DEBUG, INFO, WARNING, ERROR, CRITICAL]
         return: OBJ logging
         '''
+        # @TODO Add cutom formater for each log level "with colors"
         logging.getLogger().setLevel(logging.NOTSET)
-        # logging.NOTE = 9
-        # logging.addLevelName(logging.NOTE, "NOTE")
-        # log.note = lambda msg, *args: log._log(logging.NOTE, msg, args)
-        
         # set debug level for log file
         reLogFileHandler = logging.FileHandler(log_file)
         reLogFileHandler.setLevel(logging.DEBUG) # default debug level in log files DEBUG
@@ -95,18 +92,19 @@ class clsCommander(object):
         try:
             if sys.platform == "win32":
                 strConnection = "Driver={SQL Server};Server=%s;uid=%s;pwd=%s; database=%s" % (str(server),uid,pwd,db)
-                self.logger.info("connection string: %s" % strConnection)
+                self.logger.debug("connection string: %s" % strConnection)
                 connection = pypyodbc.connect(strConnection)
             else:
                 strConnection = "Driver={ODBC Driver 17 for SQL Server};Server=%s;uid=%s;pwd=%s; database=%s" % (str(server),uid,pwd,db)
-                self.logger.info("connection string: %s" % strConnection)
+                self.logger.debug("connection string: %s" % strConnection)
                 connection = pypyodbc.connect(strConnection)
                 connection.unicode_results = True
+            return connection.cursor()
         except Exception as SQLServerException:
             self.logger.exception("DB connection failed \n\t %s" % SQLServerException)
-            sys.exit(1)
-
-        return connection.cursor()
+            return None
+        return False
+        
 
     def fnCSVWrite(self, lines, CSV_HEADER=None, filename=None):
 
