@@ -40,7 +40,7 @@ class messages:
     STR_UNDER = bcolors.UNDERLINE + "%s" + bcolors.ENDC
 def logo():
     # pylint: disable=w1401
-    print messages.STR_FAIL % """
+    print(messages.STR_FAIL % """
     (       (    (                (   (    (             )  
     )\ )    )\ ) )\ )   (      (  )\ ))\ ) )\ ) *   ) ( /(  
     (()/((  (()/((()/(   )\   ( )\(()/(()/((()/` )  /( )\()) 
@@ -50,7 +50,7 @@ def logo():
     |   | _|| |__ | |   / _ \ | _ \| || |__ | |  | |  \ V /  
     |_|_|___|____|___| /_/ \_\|___|___|____|___| |_|   |_|   
     Reliability tools By Rawad.Kharma@wdc.com
-    """
+    """)
 class clsCommander(object):
     _instance = None
     def __new__(self):
