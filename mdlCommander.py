@@ -38,19 +38,7 @@ class messages:
     STR_FAIL = bcolors.FAIL + "%s" + bcolors.ENDC
     STR_BOLD = bcolors.BOLD + "%s" + bcolors.ENDC
     STR_UNDER = bcolors.UNDERLINE + "%s" + bcolors.ENDC
-def logo():
-    # pylint: disable=w1401
-    print(messages.STR_FAIL % """
-    (       (    (                (   (    (             )  
-    )\ )    )\ ) )\ )   (      (  )\ ))\ ) )\ ) *   ) ( /(  
-    (()/((  (()/((()/(   )\   ( )\(()/(()/((()/` )  /( )\()) 
-    /(_))\  /(_))/(_)((((_)( )((_)/(_)/(_))/(_)( )(_)((_)\  
-    (_))((_)(_)) (_))  )\ _ )((_)_(_))(_)) (_))(_(_()__ ((_) 
-    | _ | __| |  |_ _| (_)_\(_| _ |_ _| |  |_ _|_   _\ \ / / 
-    |   | _|| |__ | |   / _ \ | _ \| || |__ | |  | |  \ V /  
-    |_|_|___|____|___| /_/ \_\|___|___|____|___| |_|   |_|   
-    Reliability tools By Rawad.Kharma@wdc.com
-    """)
+
 class clsCommander(object):
     _instance = None
     def __new__(self):
